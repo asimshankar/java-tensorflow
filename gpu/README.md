@@ -2,7 +2,7 @@
 
 The TensorFlow Java API is distributed in the
 [org.tensorflow:tensorflow](http://mvnrepository.com/artifact/org.tensorflow/tensorflow)
-maven package. As of TensorFlow 1.2.1, this package did not include GPU support
+maven package. As of TensorFlow 1.4.0, this package did not include GPU support
 by default. However, by making the GPU-enabled native libraries available
 to the JVM, GPUs can be utilized. This example demonstrates that.
 
@@ -26,7 +26,7 @@ to the JVM, GPUs can be utilized. This example demonstrates that.
     ```
     output: (MatMul): /job:localhost/replica:0/task:0/cpu:0
     input: (Placeholder): /job:localhost/replica:0/task:0/cpu:0
-    TensorFlow version: 1.2.1
+    TensorFlow version: 1.4.0
 
     Input : [[1.0, 2.0], [3.0, 4.0]]
     Output: [[7.0, 10.0], [15.0, 22.0]]
@@ -43,8 +43,8 @@ CUDA-enabled Java native libraries need to be made available to the JVM.
 1.  Download and extract the CUDA-enabled TensorFlow native library:
 
     ```
-    curl -L "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-gpu-linux-x86_64-1.2.1.tar.gz" |
-      tar -xz ./libtensorflow_jni.so
+    curl -L "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-gpu-linux-x86_64-1.4.0.tar.gz" |
+      tar -xz
     ```
 
     (For more detailed instructions see:
@@ -65,7 +65,7 @@ JVM will result in something like this on the console:
 ```
 output: (MatMul): /job:localhost/replica:0/task:0/gpu:0
 input: (Placeholder): /job:localhost/replica:0/task:0/gpu:0
-TensorFlow version: 1.2.1
+TensorFlow version: 1.4.0
 
 Input : [[1.0, 2.0], [3.0, 4.0]]
 Output: [[7.0, 10.0], [15.0, 22.0]]

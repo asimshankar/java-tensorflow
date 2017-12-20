@@ -5,6 +5,7 @@ import org.tensorflow.Graph;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
 import org.tensorflow.TensorFlow;
+import org.tensorflow.Tensors;
 import org.tensorflow.framework.ConfigProto;
 
 public class HelloTF {
@@ -18,8 +19,9 @@ public class HelloTF {
       // Create a config that will dump out device placement of operations.
       ConfigProto config = ConfigProto.newBuilder().setLogDevicePlacement(true).build();
       try (Session sess = new Session(graph, config.toByteArray())) {
-        try (Tensor in = Tensor.create(new float[][] {{1, 2}, {3, 4}});
-            Tensor out = sess.runner().feed("input", in).fetch("output").run().get(0)) {
+        try (Tensor<Float> in = Tensors.create(new float[][] {{1, 2}, {3, 4}});
+            Tensor<Float> out =
+                sess.runner().feed("input", in).fetch("output").run().get(0).expect(Float.class)) {
           System.out.println("TensorFlow version: " + TensorFlow.version());
           System.out.println();
           print2x2Matrix("Input ", in);
@@ -29,7 +31,7 @@ public class HelloTF {
     }
   }
 
-  public static void print2x2Matrix(String tag, Tensor t) {
+  public static void print2x2Matrix(String tag, Tensor<Float> t) {
     float[][] m = new float[2][2];
     System.out.print(tag + ": ");
     System.out.println(Arrays.deepToString(t.copyTo(m)));
